@@ -8,7 +8,7 @@ const session = require('express-session');
 
 const app = express();
 const PORT = process.env.PORT;
-const DB_URI = process.env.DB_URI;
+const DB_URL = process.env.DB_URL;
 
 // middlewares
 app.use(express.urlencoded({extended: false}));
@@ -28,12 +28,14 @@ app.set('view engine', 'ejs');
 app.use("", require("./routes/routes"));
 
 // database connection
-mongoose.connect(process.env.DB_URI);
+mongoose.connect(DB_URL);
 const db = mongoose.connection;
 db.on('error', (err) => console.log(err));
-db.once('open', () => console.log(`Connected to database ${DB_URI}`));
+db.once('open', () => console.log(`Connected to database`));
 
 // Server
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
     console.log(`Started on http://localhost:${PORT}`);
 });
+
+// mongodb+srv://backend_username:<password>@cluster0.zfqwrom.mongodb.net/?retryWrites=true&w=majority
