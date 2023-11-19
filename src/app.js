@@ -37,5 +37,3 @@ db.once('open', () => console.log(`Connected to database`));
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`Started on http://localhost:${PORT}`);
 });
-
-// mongodb+srv://backend_username:<password>@cluster0.zfqwrom.mongodb.net/?retryWrites=true&w=majority
